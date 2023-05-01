@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_cart_tom/providers/products_provider.dart';
-import 'package:shopping_cart_tom/screens/home_screen.dart';
 import 'package:provider/provider.dart';
+import 'package:shopping_cart_tom/screens/main_screen.dart';
 import 'package:shopping_cart_tom/screens/product_details_screen.dart';
 
 void main() {
@@ -18,11 +18,11 @@ class MyApp extends StatelessWidget {
           ),
         ],
         child: MaterialApp(
-          title: 'Shopping Cart',
+          title: 'E- Commerce TOM',
           routes: {
             ProductDetailsScreen.routeName: (ctx) => const ProductDetailsScreen(),
           },
-          home: HomeScreen(),
+          home: MainScreen(),
         ),
     );
   }

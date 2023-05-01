@@ -13,7 +13,6 @@ class HomeScreen extends StatelessWidget {
     final products = productsProvider.products;
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Home')),
       body: GridView.builder(
         padding: const EdgeInsets.all(10.0),
         itemCount: products.length,
