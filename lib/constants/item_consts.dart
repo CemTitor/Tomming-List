@@ -17,4 +17,12 @@ List<Product> productList = [
     imageUrl:
     'https://images.unsplash.com/photo-1581291512481-9e9b6d1b9b8e?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dHJvdXNlcnN8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80',
   ),
+  Product(
+    id: 'p3',
+    name: 'Yellow Scarf',
+    description: 'Warm and cozy - exactly what you need for the winter.',
+    price: 19.99,
+    imageUrl:
+    'https://images.unsplash.com/photo-1581291512481-9e9b6d1b9b8e?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dHJvdXNlcnN8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80',
+  ),
 ];

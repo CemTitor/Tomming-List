@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shopping_cart_tom/screens/cart_screen.dart';
 import 'package:shopping_cart_tom/screens/home_screen.dart';
 
 class MainScreen extends StatefulWidget {
@@ -11,7 +12,7 @@ class _MainScreenState extends State<MainScreen> {
   static final List<Widget> _widgetOptions = <Widget>[
     const HomeScreen(),
     // CouponsScreen(),
-    // CartScreen(),
+    const CartScreen(),
   ];
 
   void _onItemTapped(int index) {
@@ -23,9 +24,6 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('E-Commerce TOM'),
-      ),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
@@ -35,10 +33,10 @@ class _MainScreenState extends State<MainScreen> {
             icon: Icon(Icons.home),
             label: 'Home',
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.card_giftcard),
-            label: 'Coupons',
-          ),
+          // BottomNavigationBarItem(
+          //   icon: Icon(Icons.card_giftcard),
+          //   label: 'Coupons',
+          // ),
           BottomNavigationBarItem(
             icon: Icon(Icons.shopping_cart),
             label: 'Cart',
