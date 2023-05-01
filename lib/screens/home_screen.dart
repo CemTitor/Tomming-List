@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shopping_cart_tom/models/product.dart';
 import 'package:shopping_cart_tom/providers/products_provider.dart';
+import 'package:shopping_cart_tom/screens/product_details_screen.dart';
 
 class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     final productsProvider = Provider.of<ProductsProvider>(context);
@@ -30,16 +33,17 @@ class HomeScreen extends StatelessWidget {
 class ProductItem extends StatelessWidget {
   final Product product;
 
-  ProductItem(this.product);
+  ProductItem(this.product, {super.key});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        // Navigator.of(context).pushNamed(
-        //   ProductDetailsScreen.routeName,
-        //   arguments: product.id,
-        // );
+        Navigator.pushNamed(
+          context,
+          ProductDetailsScreen.routeName,
+          arguments: product.id,
+        );
       },
       child: Card(
         shape: RoundedRectangleBorder(

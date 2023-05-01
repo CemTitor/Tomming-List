@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_cart_tom/providers/products_provider.dart';
-import 'package:shopping_cart_tom/services/home_screen.dart';
+import 'package:shopping_cart_tom/screens/home_screen.dart';
 import 'package:provider/provider.dart';
+import 'package:shopping_cart_tom/screens/product_details_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -18,6 +19,9 @@ class MyApp extends StatelessWidget {
         ],
         child: MaterialApp(
           title: 'Shopping Cart',
+          routes: {
+            ProductDetailsScreen.routeName: (ctx) => const ProductDetailsScreen(),
+          },
           home: HomeScreen(),
         ),
     );
