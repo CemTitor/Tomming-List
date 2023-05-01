@@ -1,4 +1,4 @@
-import '../models/product.dart';
+import 'package:shopping_cart_tom/models/product.dart';
 
 List<Product> productList = [
   Product(

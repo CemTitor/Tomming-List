@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shopping_cart_tom/providers/products_provider.dart';
 import 'package:shopping_cart_tom/constants/routes_consts.dart';
-
-import '../providers/cart_provider.dart';
+import 'package:shopping_cart_tom/providers/cart_provider.dart';
 
 class ProductDetailsScreen extends StatelessWidget {
   static const routeName = productDetailScreenRoute;
@@ -19,18 +18,20 @@ class ProductDetailsScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            Image.network(product.imageUrl),
-            SizedBox(height: 10),
+            product.imageUrl != null
+                ? Image.network(product.imageUrl!)
+                : const SizedBox.shrink(),
+            const SizedBox(height: 10),
             Text(product.description),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Text('\$${product.price.toStringAsFixed(2)}'),
             ElevatedButton.icon(
               onPressed: () {
                 Provider.of<CartProvider>(context, listen: false).addItem(product);
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
-                    content: Text('Product successfully added to cart!'),
-                    duration: Duration(seconds: 2),
+                    content: const Text('Product successfully added to cart!'),
+                    duration: const Duration(seconds: 2),
                     action: SnackBarAction(
                       label: 'Undo',
                       onPressed: () {
@@ -40,10 +41,8 @@ class ProductDetailsScreen extends StatelessWidget {
                   ),
                 );
               },
-              icon: Icon(Icons.shopping_cart),
-              label: Text('Add to Cart'),
-              // color: Theme.of(context).primaryColor,
-              // textColor: Colors.white,
+              icon: const Icon(Icons.shopping_cart),
+              label: const Text('Add to Cart'),
             ),
           ],
         ),

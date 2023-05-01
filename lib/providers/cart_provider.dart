@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:shopping_cart_tom/models/product.dart';
-import '../models/cart_item.dart';
+import 'package:shopping_cart_tom/models/cart_item.dart';
 
 class CartProvider with ChangeNotifier {
   Map<String, CartItem> _items = {};
@@ -48,8 +48,10 @@ class CartProvider with ChangeNotifier {
       }
       notifyListeners();
     } catch (error) {
-      print("An error occurred while adding the product to the cart: $error");
-      throw error;
+      if (kDebugMode) {
+        print("An error occurred while adding the product to the cart: $error");
+      }
+      rethrow;
     }
   }
 
@@ -58,7 +60,9 @@ class CartProvider with ChangeNotifier {
       _items.remove(productId);
       notifyListeners();
     } catch (error) {
-      print("An error occurred while removing the product from the cart: $error");
+      if (kDebugMode) {
+        print("An error occurred while removing the product from the cart: $error");
+      }
       rethrow;
     }
   }
