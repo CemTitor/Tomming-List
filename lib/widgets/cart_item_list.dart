@@ -34,7 +34,7 @@ class CartItemList extends StatelessWidget {
               ),
               title: Text('${cartItem?.title}'),
               subtitle: Text('Quantity: ${cartItem?.quantity}'),
-              trailing: Text('\$${(cartItem?.price ?? 0).toStringAsFixed(2) * (cartItem?.quantity ?? 0)} '),
+              trailing: Text('\$${(cartItem?.price ?? 0) * (cartItem?.quantity ?? 0)} '),
             ),
           );
         },

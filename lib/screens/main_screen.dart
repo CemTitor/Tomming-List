@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:shopping_cart_tom/screens/cart_screen.dart';
 import 'package:shopping_cart_tom/screens/home_screen.dart';
 
+import 'coupon_screen.dart';
+
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
 
@@ -13,7 +15,7 @@ class MainScreenState extends State<MainScreen> {
   int _selectedIndex = 0;
   static final List<Widget> _widgetOptions = <Widget>[
     const HomeScreen(),
-    // CouponsScreen(),
+    const CouponsScreen(),
     const CartScreen(),
   ];
 
@@ -35,10 +37,10 @@ class MainScreenState extends State<MainScreen> {
             icon: Icon(Icons.home),
             label: 'Home',
           ),
-          // BottomNavigationBarItem(
-          //   icon: Icon(Icons.card_giftcard),
-          //   label: 'Coupons',
-          // ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.card_giftcard),
+            label: 'Coupons',
+          ),
           BottomNavigationBarItem(
             icon: Icon(Icons.shopping_cart),
             label: 'Cart',

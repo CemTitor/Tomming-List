@@ -1,24 +1,41 @@
 import 'package:flutter/foundation.dart';
+import 'package:shopping_cart_tom/models/coupon.dart';
 import 'package:shopping_cart_tom/models/product.dart';
 import 'package:shopping_cart_tom/models/cart_item.dart';
 
 class CartProvider with ChangeNotifier {
+
   Map<String, CartItem> _items = {};
+  Coupon? _selectedCoupon;
 
   Map<String, CartItem> get items {
     return {..._items};
   }
-
   int get itemCount {
     return _items.length;
   }
+  Coupon? get selectedCoupon => _selectedCoupon;
 
   double get totalPrice {
     double total = 0.0;
     _items.forEach((key, cartItem) {
       total += cartItem.price * cartItem.quantity;
     });
+
+    if (_selectedCoupon != null) {
+      if (_selectedCoupon!.discountType == 'Ratio') {
+        total = total * (1 - _selectedCoupon!.value / 100);
+      } else if (_selectedCoupon!.discountType == 'Amount') {
+        total -= _selectedCoupon!.value;
+        if (total < 0) total = 0;
+      }
+    }
     return total;
+  }
+
+  void setSelectedCoupon(Coupon? coupon) {
+    _selectedCoupon = coupon;
+    notifyListeners();
   }
 
   void addItem(Product product) {
