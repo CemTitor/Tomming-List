@@ -38,7 +38,7 @@ class CartProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void addItem(Product product) {
+  void addItem(Product product, int quantity) {
     try {
       if (_items.containsKey(product.id)) {
         _items.update(
@@ -47,7 +47,7 @@ class CartProvider with ChangeNotifier {
             id: existingItem.id,
             productId: existingItem.productId,
             title: existingItem.title,
-            quantity: existingItem.quantity + 1,
+            quantity: existingItem.quantity + quantity,
             price: existingItem.price,
           ),
         );
@@ -58,7 +58,7 @@ class CartProvider with ChangeNotifier {
             id: DateTime.now().toString(),
             productId: product.id,
             title: product.name,
-            quantity: 1,
+            quantity: quantity,
             price: product.price,
           ),
         );

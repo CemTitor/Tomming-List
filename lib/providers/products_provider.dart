@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:shopping_cart_tom/constants/item_consts.dart';
 import 'package:shopping_cart_tom/models/product.dart';
 
+enum FilterOptions { LowestPrice, HighestPrice }
+
 class ProductsProvider with ChangeNotifier {
   final List<Product> _products = productList;
 
