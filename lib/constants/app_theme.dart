@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 final lightTheme = ThemeData(
   useMaterial3: true,
   colorScheme: lightColorScheme,
-  fontFamily: 'Poppins',
+  fontFamily: 'Roboto',
 );
 
 final darkTheme = ThemeData(
