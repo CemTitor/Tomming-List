@@ -64,6 +64,7 @@ class CartProvider with ChangeNotifier {
             title: existingItem.title,
             quantity: existingItem.quantity + quantity,
             price: existingItem.price,
+            imageUrl: existingItem.imageUrl,
           ),
         );
       } else {
@@ -75,6 +76,7 @@ class CartProvider with ChangeNotifier {
             title: product.name,
             quantity: quantity,
             price: product.price,
+            imageUrl: product.imageUrl,
           ),
         );
       }
@@ -99,6 +101,7 @@ class CartProvider with ChangeNotifier {
               title: existingItem.title,
               quantity: existingItem.quantity - quantity,
               price: existingItem.price,
+              imageUrl: existingItem.imageUrl,
             ),
           );
         } else {

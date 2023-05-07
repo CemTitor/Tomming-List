@@ -11,7 +11,14 @@ class CartScreen extends StatelessWidget {
     final cartProvider = Provider.of<CartProvider>(context);
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Shopping Cart')),
+      appBar: AppBar(title: const Text('Shopping Cart'),actions: [
+        IconButton(
+          onPressed: () {
+            cartProvider.clear();
+          },
+          icon: const Icon(Icons.delete),
+        ),
+      ],),
       body: Column(
         children: <Widget>[
           const CartItemList(),
@@ -21,13 +28,11 @@ class CartScreen extends StatelessWidget {
               'Applied Coupon: ${cartProvider.selectedCoupon!.id} (${cartProvider.selectedCoupon!.discountType}: ${cartProvider.selectedCoupon!.value}%)')
               : const Text('No Coupon Applied'),
           const SizedBox(height: 10),
-          Text('Total: \$${cartProvider.totalPrice.toStringAsFixed(2)}'),
-          FilledButton(
-            onPressed: () {
-              cartProvider.clear();
-            },
-            child: const Text('Clear Cart'),
-          ),
+          Text('Total: \$${cartProvider.totalPrice.toStringAsFixed(2)}',
+              style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+                color: Theme.of(context).primaryColor,
+              )),
+          const SizedBox(height: 10),
         ],
       ),
     );
