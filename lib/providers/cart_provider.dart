@@ -87,6 +87,33 @@ class CartProvider with ChangeNotifier {
     }
   }
 
+  void removeItemByQuantity(String productId, int quantity) {
+    try {
+      if (_items.containsKey(productId)) {
+        if (_items[productId]!.quantity > quantity) {
+          _items.update(
+            productId,
+                (existingItem) => CartItem(
+              id: existingItem.id,
+              productId: existingItem.productId,
+              title: existingItem.title,
+              quantity: existingItem.quantity - quantity,
+              price: existingItem.price,
+            ),
+          );
+        } else {
+          _items.remove(productId);
+        }
+        notifyListeners();
+      }
+    } catch (error) {
+      if (kDebugMode) {
+        print("An error occurred while removing the product by quantity from the cart: $error");
+      }
+      rethrow;
+    }
+  }
+
   void removeItem(String productId) {
     try {
       _items.remove(productId);

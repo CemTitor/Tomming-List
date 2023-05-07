@@ -103,8 +103,10 @@ class _ProductItemState extends State<ProductItem> {
                       IconButton(
                         icon: Icon(Icons.remove, color: Colors.white),
                         onPressed: () {
-                          _decrementQuantity();
-                          cartProvider.removeItem(widget.product.id);
+                          setState(() {
+                            cartProvider.removeItemByQuantity(widget.product.id, 1);
+
+                          });
                         },
                       ),
                     ],
