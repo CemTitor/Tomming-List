@@ -15,6 +15,13 @@ class CartProvider with ChangeNotifier {
     return _items.length;
   }
 
+  int getItemQuantity(String productId) {
+    if (_items.containsKey(productId)) {
+      return _items[productId]!.quantity;
+    }
+    return 0;
+  }
+
   int get itemCount{
     int total = 0;
     _items.forEach((key, cartItem) {

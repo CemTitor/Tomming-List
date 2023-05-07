@@ -9,25 +9,24 @@ class CartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cartProvider = Provider.of<CartProvider>(context);
-    final cartItems = cartProvider.items;
 
     return Scaffold(
-      appBar: AppBar(title: Text('Shopping Cart')),
+      appBar: AppBar(title: const Text('Shopping Cart')),
       body: Column(
         children: <Widget>[
-          CartItemList(),
-          SizedBox(height: 10),
+          const CartItemList(),
+          const SizedBox(height: 10),
           cartProvider.selectedCoupon != null
               ? Text(
               'Applied Coupon: ${cartProvider.selectedCoupon!.id} (${cartProvider.selectedCoupon!.discountType}: ${cartProvider.selectedCoupon!.value}%)')
-              : Text('No Coupon Applied'),
-          SizedBox(height: 10),
+              : const Text('No Coupon Applied'),
+          const SizedBox(height: 10),
           Text('Total: \$${cartProvider.totalPrice.toStringAsFixed(2)}'),
           FilledButton(
             onPressed: () {
               cartProvider.clear();
             },
-            child: Text('Clear Cart'),
+            child: const Text('Clear Cart'),
           ),
         ],
       ),

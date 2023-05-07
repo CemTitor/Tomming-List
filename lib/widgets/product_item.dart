@@ -2,33 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shopping_cart_tom/models/product.dart';
 import 'package:shopping_cart_tom/providers/cart_provider.dart';
-
-import '../screens/product_details_screen.dart';
+import 'package:shopping_cart_tom/screens/product_details_screen.dart';
 
 class ProductItem extends StatefulWidget {
   final Product product;
 
-  ProductItem(this.product);
+  const ProductItem(this.product, {super.key});
 
   @override
   _ProductItemState createState() => _ProductItemState();
 }
 
 class _ProductItemState extends State<ProductItem> {
-  int _quantity = 0;
-
-  void _incrementQuantity() {
-    setState(() {
-      _quantity++;
-    });
-  }
-
-  void _decrementQuantity() {
-    if (_quantity > 0) {
-      setState(() {
-        _quantity--;
-      });
-    }
+  // int _quantity = 0;
+  int get _quantity {
+    return Provider.of<CartProvider>(context, listen: false)
+        .getItemQuantity(widget.product.id);
   }
 
   @override
@@ -41,7 +30,7 @@ class _ProductItemState extends State<ProductItem> {
             arguments: widget.product.id);
       },
       child: AnimatedContainer(
-        duration: Duration(milliseconds: 300),
+        duration: const Duration(milliseconds: 300),
         decoration: BoxDecoration(
           color: _quantity > 0 ?  Theme.of(context).primaryColor : Theme.of(context).cardColor,
           borderRadius: BorderRadius.circular(5),
@@ -88,8 +77,9 @@ class _ProductItemState extends State<ProductItem> {
                     ? IconButton(
                   icon: Icon(Icons.add, color: Colors.black),
                   onPressed: () {
-                    _incrementQuantity();
-                    cartProvider.addItem(widget.product, 1);
+                    setState(() {
+                      cartProvider.addItem(widget.product, 1);
+                    });
                   },
                 )
                     : Container(
@@ -100,8 +90,10 @@ class _ProductItemState extends State<ProductItem> {
                       IconButton(
                         icon: Icon(Icons.add, color: Colors.white),
                         onPressed: () {
-                          _incrementQuantity();
-                          cartProvider.addItem(widget.product, 1);
+                          setState(() {
+                            cartProvider.addItem(widget.product, 1);
+
+                          });
                         },
                       ),
                       Text(

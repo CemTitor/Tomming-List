@@ -43,10 +43,13 @@ class MainScreenState extends State<MainScreen> {
             },
             child: Row(
               children: [
+                SizedBox(width: 10),
                 Icon(Icons.shopping_cart),
                 SizedBox(width: 5),
-                Text(
-                  cart.itemCount.toString(),
+                Expanded(
+                  child: Text(
+                    cart.itemCount.toString(),
+                  ),
                 ),
               ],
             ),
