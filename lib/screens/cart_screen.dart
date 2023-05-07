@@ -23,6 +23,12 @@ class CartScreen extends StatelessWidget {
               : Text('No Coupon Applied'),
           SizedBox(height: 10),
           Text('Total: \$${cartProvider.totalPrice.toStringAsFixed(2)}'),
+          FilledButton(
+            onPressed: () {
+              cartProvider.clear();
+            },
+            child: Text('Clear Cart'),
+          ),
         ],
       ),
     );

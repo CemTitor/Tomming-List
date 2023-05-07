@@ -11,8 +11,16 @@ class CartProvider with ChangeNotifier {
   Map<String, CartItem> get items {
     return {..._items};
   }
-  int get itemCount {
+  int get productCount {
     return _items.length;
+  }
+
+  int get itemCount{
+    int total = 0;
+    _items.forEach((key, cartItem) {
+      total += cartItem.quantity;
+    });
+    return total;
   }
   Coupon? get selectedCoupon => _selectedCoupon;
 
