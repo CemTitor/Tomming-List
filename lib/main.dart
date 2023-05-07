@@ -41,6 +41,7 @@ class MyApp extends StatelessWidget {
             themeMode: themeProvider.themeMode,
             routes: {
               ProductDetailsScreen.routeName: (ctx) => const ProductDetailsScreen(),
+              MainScreen.routeName: (ctx) => const MainScreen(),
             },
             home: const MainScreen(),
           );

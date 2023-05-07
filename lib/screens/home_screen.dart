@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shopping_cart_tom/providers/products_provider.dart';
 import 'package:shopping_cart_tom/widgets/product_item.dart';
-
 import '../providers/theme_provider.dart';
 
 class HomeScreen extends StatefulWidget {

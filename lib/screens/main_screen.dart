@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shopping_cart_tom/constants/routes_consts.dart';
 import 'package:shopping_cart_tom/providers/cart_provider.dart';
 import 'package:shopping_cart_tom/screens/cart_screen.dart';
 import 'package:shopping_cart_tom/screens/home_screen.dart';
 import 'package:shopping_cart_tom/screens/coupon_screen.dart';
 
 class MainScreen extends StatefulWidget {
+  static const routeName = mainScreenRoute;
+
   const MainScreen({super.key});
 
   @override
