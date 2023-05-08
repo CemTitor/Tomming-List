@@ -53,7 +53,7 @@ class CartItemList extends StatelessWidget {
                   IconButton(
                     icon: Icon(Icons.remove,),
                     onPressed: () {
-                      cartProvider.removeItemByQuantity(cartItemId, 1);
+                      cartProvider.removeItemByQuantity(cartItemId);
                     },
                   ),
                   Text(

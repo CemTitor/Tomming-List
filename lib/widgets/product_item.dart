@@ -50,10 +50,14 @@ class _ProductItemState extends State<ProductItem> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Image(
-                    image: AssetImage(widget.product.imageUrl!),
+                  Image.network(
+                    widget.product.imageUrl!,
                     width: double.infinity,
                   ),
+                  // Image(
+                  //   image: AssetImage(widget.product.imageUrl!),
+                  //   width: double.infinity,
+                  // ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
@@ -78,7 +82,7 @@ class _ProductItemState extends State<ProductItem> {
                   icon: Icon(Icons.add, color: Colors.black),
                   onPressed: () {
                     setState(() {
-                      cartProvider.addItem(widget.product, 1);
+                      cartProvider.addItem(widget.product, '64592702c50ab5414ba4e262');
                     });
                   },
                 )
@@ -91,7 +95,7 @@ class _ProductItemState extends State<ProductItem> {
                         icon: Icon(Icons.add, color: Colors.white),
                         onPressed: () {
                           setState(() {
-                            cartProvider.addItem(widget.product, 1);
+                            cartProvider.addItem(widget.product, '64592702c50ab5414ba4e262');
 
                           });
                         },
@@ -104,7 +108,7 @@ class _ProductItemState extends State<ProductItem> {
                         icon: Icon(Icons.remove, color: Colors.white),
                         onPressed: () {
                           setState(() {
-                            cartProvider.removeItemByQuantity(widget.product.id, 1);
+                            cartProvider.removeItemByQuantity(widget.product.id);
 
                           });
                         },

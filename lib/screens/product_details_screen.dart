@@ -56,8 +56,12 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
             children: <Widget>[
               product.imageUrl != null
                   ? Center(
-                child: Image(
-                  image: AssetImage(product.imageUrl!),
+                // child: Image(
+                //   image: AssetImage(product.imageUrl!),
+                // ),
+                child: Image.network(
+                  product.imageUrl!,
+                  width: double.infinity,
                 ),
               )
                   : const SizedBox.shrink(),
@@ -78,7 +82,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
               if (_quantity == 0)
                 FilledButton(
                   onPressed: () {
-                    cartProvider.addItem(product, 1);
+                    cartProvider.addItem(product,'64592702c50ab5414ba4e262' );
                     setState(() {});
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
@@ -131,7 +135,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                           icon: Icon(Icons.remove, color: Colors.black),
                           onPressed: () {
                             setState(() {
-                              cartProvider.removeItemByQuantity(productId, 1);
+                              cartProvider.removeItemByQuantity(productId);
                             });
                           },
                         ),
@@ -143,7 +147,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                           icon: Icon(Icons.add, color: Colors.black),
                           onPressed: () {
                             setState(() {
-                              cartProvider.addItem(product, 1);
+                              cartProvider.addItem(product,'64592702c50ab5414ba4e262');
                             });
                           },
                         ),

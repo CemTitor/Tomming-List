@@ -3,7 +3,11 @@ import 'package:shopping_cart_tom/models/coupon.dart';
 import 'package:shopping_cart_tom/models/product.dart';
 import 'package:shopping_cart_tom/models/cart_item.dart';
 
+import '../services/cart_service.dart';
+
 class CartProvider with ChangeNotifier {
+
+  final CartService _cartService = CartService();
 
   Map<String, CartItem> _items = {};
   Coupon? _selectedCoupon;
@@ -53,8 +57,9 @@ class CartProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void addItem(Product product, int quantity) {
+  void addItem(Product product, String userId) async{
     try {
+      await _cartService.addItemToShoppingCart(userId, product.id);
       if (_items.containsKey(product.id)) {
         _items.update(
           product.id,
@@ -62,7 +67,7 @@ class CartProvider with ChangeNotifier {
             id: existingItem.id,
             productId: existingItem.productId,
             title: existingItem.title,
-            quantity: existingItem.quantity + quantity,
+            quantity: existingItem.quantity + 1,
             price: existingItem.price,
             imageUrl: existingItem.imageUrl,
           ),
@@ -74,7 +79,7 @@ class CartProvider with ChangeNotifier {
             id: DateTime.now().toString(),
             productId: product.id,
             title: product.name,
-            quantity: quantity,
+            quantity: 1,
             price: product.price,
             imageUrl: product.imageUrl,
           ),
@@ -89,17 +94,31 @@ class CartProvider with ChangeNotifier {
     }
   }
 
-  void removeItemByQuantity(String productId, int quantity) {
+  // Future<void> removeItem(String productId, String userId) async {
+  //   try {
+  //     // API çağrısı için gerekli removeItemFromCart fonksiyonunu CartService sınıfına ekleyin
+  //     await _cartService.removeItemFromCart(userId, productId);
+  //     _items.remove(productId);
+  //     notifyListeners();
+  //   } catch (error) {
+  //     if (kDebugMode) {
+  //       print("An error occurred while removing the product from the cart: $error");
+  //     }
+  //     rethrow;
+  //   }
+  // }
+
+  void removeItemByQuantity(String productId) {
     try {
       if (_items.containsKey(productId)) {
-        if (_items[productId]!.quantity > quantity) {
+        if (_items[productId]!.quantity > 1) {
           _items.update(
             productId,
                 (existingItem) => CartItem(
               id: existingItem.id,
               productId: existingItem.productId,
               title: existingItem.title,
-              quantity: existingItem.quantity - quantity,
+              quantity: existingItem.quantity - 1,
               price: existingItem.price,
               imageUrl: existingItem.imageUrl,
             ),
