@@ -2,10 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:shopping_cart_tom/constants/item_consts.dart';
 import 'package:shopping_cart_tom/models/product.dart';
 
+import '../services/products_service.dart';
+
 enum FilterOptions { LowestPrice, HighestPrice }
 
 class ProductsProvider with ChangeNotifier {
-  final List<Product> _products = productList;
+  final ProductService _productService = ProductService();
+  List<Product> _products = [];
+  // final List<Product> _products = productList;
+
+  Future<void> fetchProducts() async {
+    _products = await _productService.fetchProducts();
+    notifyListeners();
+  }
 
   List<Product> get products {
     return [..._products];

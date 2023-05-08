@@ -13,6 +13,13 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   String _searchQuery = '';
+  late Future<void> _fetchProductsFuture;
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchProductsFuture = Provider.of<ProductsProvider>(context, listen: false).fetchProducts();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -87,17 +94,27 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
-      body: GridView.builder(
-        padding: const EdgeInsets.all(10.0),
-        itemCount: products.length,
-        itemBuilder: (ctx, i) => ProductItem(products[i]),
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          // mainAxisExtent: 250,
-          childAspectRatio: 2 / 3,
-          crossAxisSpacing: 10.0,
-          mainAxisSpacing: 10.0,
-        ),
+      body: FutureBuilder(
+        future: _fetchProductsFuture,
+        builder: (BuildContext context, AsyncSnapshot<void> snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(child: CircularProgressIndicator());
+          } else if (snapshot.hasError) {
+            return Center(child: Text('An error occurred while loading products.'));
+          } else {
+            return GridView.builder(
+              padding: const EdgeInsets.all(10.0),
+              itemCount: products.length,
+              itemBuilder: (ctx, i) => ProductItem(products[i]),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                childAspectRatio: 2 / 3,
+                crossAxisSpacing: 10.0,
+                mainAxisSpacing: 10.0,
+              ),
+            );
+          }
+        },
       ),
     );
   }
