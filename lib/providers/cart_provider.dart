@@ -158,7 +158,7 @@ class CartProvider with ChangeNotifier {
 
   void clear() {
     try {
-      _cartService.removeAllItemsFromShoppingCart();
+      _cartService.clearShoppingCart();
       _items = {};
       notifyListeners();
     } catch (error) {
