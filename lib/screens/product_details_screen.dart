@@ -4,6 +4,8 @@ import 'package:shopping_cart_tom/providers/products_provider.dart';
 import 'package:shopping_cart_tom/constants/routes_consts.dart';
 import 'package:shopping_cart_tom/providers/cart_provider.dart';
 
+import 'main_screen.dart';
+
 class ProductDetailsScreen extends StatefulWidget {
   static const routeName = productDetailScreenRoute;
 
@@ -19,19 +21,25 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     final productId = ModalRoute.of(context)!.settings.arguments as String;
-    final product = Provider.of<ProductsProvider>(context, listen: false).findById(productId);
+    final product = Provider.of<ProductsProvider>(context, listen: false)
+        .findById(productId);
     final cartProvider = Provider.of<CartProvider>(context);
     final int _quantity = cartProvider.getItemQuantity(productId);
 
     return Scaffold(
       appBar: AppBar(
-        // automaticallyImplyLeading: false,
-        // leading: IconButton(
-        //   icon: const Icon(Icons.arrow_back),
-        //   onPressed: () {
-        //     Navigator.pushNamed(context, MainScreen.routeName);
-        //   },
-        // ),
+        automaticallyImplyLeading: false,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const MainScreen(),
+              ),
+            );
+          },
+        ),
         elevation: 0,
         actions: [
           IconButton(
@@ -55,28 +63,17 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
             children: <Widget>[
               product.imageUrl != null
                   ? Center(
-                // child: Image(
-                //   image: AssetImage(product.imageUrl!),
-                // ),
-               child: Image(
-                  image: AssetImage('assets/fruits/1.jpg'),
-                  width: double.infinity,
-                ),
-                // child: Image.network(
-                //   product.imageUrl!,
-                //   width: double.infinity,
-                // ),
-              )
+                      child: Image.network(
+                        product.imageUrl!,
+                        width: double.infinity,
+                      ),
+                    )
                   : const SizedBox.shrink(),
               const SizedBox(height: 10),
               Text(product.name,
                   style: Theme.of(context).textTheme.headlineLarge),
               SizedBox(height: 10),
-              const Placeholder(
-                fallbackHeight: 70,
-              ),
               SizedBox(height: 10),
-              Text("Details", style: Theme.of(context).textTheme.headlineSmall),
               Text(product.description),
               Divider(
                 thickness: 1,
@@ -84,18 +81,18 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
               const SizedBox(height: 20),
               if (_quantity == 0)
                 FilledButton(
-                  onPressed: () async{
+                  onPressed: () async {
                     await cartProvider.addItem(product);
                     setState(() {});
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
                         content:
-                        const Text('Product successfully added to cart!'),
+                            const Text('Product successfully added to cart!'),
                         duration: const Duration(seconds: 2),
                         action: SnackBarAction(
                           label: 'Undo',
                           onPressed: () {
-                            cartProvider.removeProductItem(product.id);
+                            cartProvider.removeItem(product.id);
                           },
                         ),
                       ),
@@ -126,8 +123,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                               .textTheme
                               .displayMedium
                               ?.copyWith(
-                              color:
-                              Theme.of(context).colorScheme.primary),
+                                  color: Theme.of(context).colorScheme.primary),
                         ),
                       ],
                     ),
@@ -149,8 +145,10 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                         IconButton(
                           icon: Icon(Icons.add, color: Colors.black),
                           onPressed: () async {
-                            await cartProvider.addItem(product,);
-                            setState(()  {});
+                            await cartProvider.addItem(
+                              product,
+                            );
+                            setState(() {});
                           },
                         ),
                       ],
@@ -164,4 +162,3 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
     );
   }
 }
-

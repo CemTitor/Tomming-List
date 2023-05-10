@@ -11,7 +11,6 @@ class CartProvider with ChangeNotifier {
   Map<String, CartItem> _items = {};
   Coupon? _selectedCoupon;
 
-
   int get productCount {
     return _items.length;
   }
@@ -45,18 +44,26 @@ class CartProvider with ChangeNotifier {
 
     if (_selectedCoupon != null) {
       if (_selectedCoupon!.discountType == 'Ratio') {
-        total = total * (1 - _selectedCoupon!.value! / 100);
+        total = total * (1 - _selectedCoupon!.value / 100);
       } else if (_selectedCoupon!.discountType == 'Amount') {
-        total -= _selectedCoupon!.value!;
+        total -= _selectedCoupon!.value;
         if (total < 0) total = 0;
       }
     }
     return total;
   }
 
+  double totalPriceWithoutCoupon(CartProvider cartProvider) {
+    double total = 0.0;
+    cartProvider.items.forEach((key, cartItem) {
+      total += cartItem.price * cartItem.quantity;
+    });
+    return total;
+  }
+
   Future<void> addItem(Product product) async{
     try {
-      await _cartService.addItemToShoppingCart(product.id);
+      await _cartService.addItemToShoppingCart(product.id );
       if (_items.containsKey(product.id)) {
         _items.update(
           product.id,
@@ -115,7 +122,7 @@ class CartProvider with ChangeNotifier {
   void removeItemByQuantity(String productId) {
     try {
       if (_items.containsKey(productId)) {
-        _cartService.removeItemFromShoppingCart(productId);
+        _cartService.removeItemByQuantity(productId);
         if (_items[productId]!.quantity > 1) {
           _items.update(
             productId,
@@ -142,10 +149,9 @@ class CartProvider with ChangeNotifier {
     }
   }
 
-  void removeProductItem(String productId) {
+  void removeItem(String productId) {
     try {
-      _cartService.removeItemFromShoppingCart(productId);
-
+      _cartService.removeItem(productId);
       _items.remove(productId);
       notifyListeners();
     } catch (error) {

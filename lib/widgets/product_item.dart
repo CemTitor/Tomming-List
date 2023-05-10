@@ -50,14 +50,9 @@ class _ProductItemState extends State<ProductItem> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Image.network(
-                  //   widget.product.imageUrl!,
-                  //   width: double.infinity,
-                  // ),
-                  Image(
-                    image: AssetImage('assets/fruits/13.jpg'),
+                  Image.network(
+                    widget.product.imageUrl!,
                     width: double.infinity,
-
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -87,15 +82,20 @@ class _ProductItemState extends State<ProductItem> {
                   },
                 )
                     : Container(
-                  color: Colors.black54,
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).primaryColor,
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(20),
+                    ),
+                  ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       IconButton(
                         icon: Icon(Icons.add, color: Colors.white),
                         onPressed: () async{
-                            await cartProvider.addItem(widget.product);
-                            setState(()  {});
+                          await cartProvider.addItem(widget.product);
+                          setState(()  {});
                         },
                       ),
                       Text(

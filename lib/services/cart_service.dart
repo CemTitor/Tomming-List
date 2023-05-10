@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:shopping_cart_tom/constants/global_constants.dart';
 import 'package:shopping_cart_tom/models/cart_item.dart';
-import 'auth_service.dart';
 
 class CartService {
 
@@ -31,7 +31,6 @@ class CartService {
     }
   }
 
-
   Future<List<CartItem>> getAllShoppingCartItems() async {
     final response = await http.get(
       Uri.parse('$baseUrl/get-all-shopping-cart-items'),
@@ -49,11 +48,10 @@ class CartService {
     }
   }
 
-
-  Future<void> removeItemFromShoppingCart(String productId) async {
+  Future<void> removeItemByQuantity(String productId) async {
     final response = await http.delete(
       Uri.parse(
-          '$baseUrl/remove-item-from-shopping-cart?userId=$userId&productId=$productId'),
+          '$baseUrl/decrease-item-amount-in-shopping-cart?productId=$productId'),
       headers: {
         'accept': '*/*',
         'Authorization': bearerToken,
@@ -70,7 +68,7 @@ class CartService {
   Future<void> clearShoppingCart() async {
     final response = await http.delete(
       Uri.parse(
-          '$baseUrl/remove-all-items-from-shopping-cart'),
+          '$baseUrl/clear-shopping-cart'),
       headers: {
         'accept': '*/*',
         'Authorization': bearerToken,
