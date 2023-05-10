@@ -47,6 +47,14 @@ class AuthenticationService with ChangeNotifier {
         print('access Token: $accessToken');
         print('userId: $userUid');
         successLogin = true;
+
+        // Save user login state
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+        await prefs.setBool('loggedIn', true);
+
+        // Save accessToken and userUid
+        await saveUserCredentials();
+
         notifyListeners();
       } else {
         successLogin = false;
@@ -90,6 +98,54 @@ class AuthenticationService with ChangeNotifier {
       successSignup = false;
       print('Error: $e');
     }
+  }
+
+  Future<void> logOut() async {
+    try {
+      final response = await http.post(
+        Uri.parse('$baseUrl/logout'),
+        headers: {
+          'accept': '*/*',
+          'Authorization': 'Bearer $accessToken',
+        },
+      );
+
+      ///todo:for now we dont have endpoint so, we will use this
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      await prefs.setBool('loggedIn', false);
+
+      if (response.statusCode == 200) {
+        print('Logged out successfully.');
+
+        // Clear user login state
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+        await prefs.setBool('loggedIn', false);
+
+        // Clear userUid and accessToken
+        userUid = null;
+        accessToken = null;
+
+        successLogin = false;
+
+        notifyListeners();
+      } else {
+        print('Failed to log out.');
+      }
+    } catch (e) {
+      print('Error: $e');
+    }
+  }
+
+  Future<void> saveUserCredentials() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('accessToken', accessToken!);
+    await prefs.setString('userUid', userUid!);
+  }
+
+  Future<void> loadUserCredentials() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    accessToken = prefs.getString('accessToken');
+    userUid = prefs.getString('userUid');
   }
 
 }
