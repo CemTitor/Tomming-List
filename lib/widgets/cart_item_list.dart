@@ -16,6 +16,7 @@ class CartItemList extends StatelessWidget {
         itemBuilder: (ctx, i) {
           final cartItemId = cartItems.keys.toList()[i];
           final cartItem = cartItems[cartItemId];
+          final itemTotalPrice = (cartItem?.price ?? 0) * (cartItem?.quantity ?? 0);
           return Dismissible(
             key: UniqueKey(),
             direction: DismissDirection.endToStart,
@@ -26,7 +27,7 @@ class CartItemList extends StatelessWidget {
               child: const Icon(Icons.delete, size: 24),
             ),
             onDismissed: (direction) {
-              cartProvider.removeItem(cartItemId);
+              cartProvider.removeProductItem(cartItemId);
             },
             child: ListTile(
               leading: Container(
@@ -35,7 +36,8 @@ class CartItemList extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8.0),
                   image: DecorationImage(
-                    image: AssetImage(cartItem?.imageUrl ?? ''),
+                    // image: AssetImage(cartItem?.imageUrl ?? ''),
+                    image: NetworkImage(cartItem?.imageUrl ?? ''),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -44,7 +46,7 @@ class CartItemList extends StatelessWidget {
               subtitle: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('\$${cartItem?.price}',style: Theme.of(context).textTheme.bodyLarge?.copyWith(color:  Theme.of(context).primaryColor),),
+                  Text('\$${itemTotalPrice}',style: Theme.of(context).textTheme.bodyLarge?.copyWith(color:  Theme.of(context).primaryColor),),
                 ],
               ),
               trailing: Row(
