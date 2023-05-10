@@ -1,7 +1,7 @@
 class Coupon {
-  final String? id;
-  final String? discountType;
-  final int? value;
+  final String id;
+  final String discountType;
+  final int value;
 
   Coupon({
     required this.id,
@@ -11,9 +11,9 @@ class Coupon {
 
   factory Coupon.fromJson(Map<String, dynamic> json) {
     return Coupon(
-      id: json['id'] as String?,
-      discountType: json['discountType'] as String?,
-      value: json['value'] as int?,
+      id: json['id'] as String? ?? '',
+      discountType: json['discountType'] as String? ?? '',
+      value: json['value'] as int? ?? 0,
     );
   }
 

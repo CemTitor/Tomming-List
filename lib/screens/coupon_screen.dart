@@ -11,7 +11,9 @@ class CouponsScreen extends StatelessWidget {
     final couponsProvider = Provider.of<CouponsProvider>(context, listen: false);
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Coupons')),
+      appBar: AppBar(
+        title: Text('Coupons', style: TextStyle(color: Colors.white)),
+      ),
       body: FutureBuilder(
         future: couponsProvider.fetchAndSetCoupons(),
         builder: (ctx, snapshot) {
@@ -29,16 +31,38 @@ class CouponsScreen extends StatelessWidget {
                     itemBuilder: (ctx, i) => Consumer<CartProvider>(
                       builder: (ctx, cartProvider, _) {
                         bool isSelected =
-                            cartProvider.selectedCoupon?.id == coupons[i].id;
-                        return ListTile(
-                          tileColor: isSelected ? Colors.blue : null,
-                          title: Text('Coupon ${coupons[i].id}'),
-                          subtitle: Text(
-                              '${coupons[i].discountType}: ${coupons[i].value}%'),
-                          onTap: () {
-                            cartProvider.setSelectedCoupon(
-                                isSelected ? null : coupons[i]);
-                          },
+                            cartProvider.selectedCoupon?.value == coupons[i].value;
+                        return Card(
+                          margin: EdgeInsets.symmetric(vertical: 6, horizontal: 12),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          elevation: 3,
+                          child: ListTile(
+                            tileColor: isSelected
+                                ? Theme.of(context).primaryColor.withOpacity(0.3)
+                                : null,
+                            title: Text(
+                              'Coupon ${i + 1} ${coupons[i].id}',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            subtitle: Text(
+                              '${coupons[i].discountType}: ${coupons[i].value}' +
+                                  (coupons[i].discountType == 'Ratio' ? '%' : ''),
+                            ),
+                            trailing: isSelected
+                                ? Icon(
+                              Icons.check_circle,
+                              color: Theme.of(context).primaryColor,
+                            )
+                                : null,
+                            onTap: () {
+                              cartProvider.setSelectedCoupon(
+                                  isSelected ? null : coupons[i]);
+                            },
+                          ),
                         );
                       },
                     ),
