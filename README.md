@@ -1,4 +1,4 @@
-# [Tomming List]
+# Tomming List
 
 An e-commerce mobile application that offers a smooth shopping experience, allowing users to browse items, view details, and manage their shopping cart. Built with Flutter, this app features a login system, dark mode, local search, and more. The app utilizes clean architecture and implements Rive animations, making it visually appealing and highly functional.
 
@@ -7,11 +7,7 @@ An e-commerce mobile application that offers a smooth shopping experience, allow
 
 ## UI Screenshots
 
-![image](https://github.com/CemTitor/shopping_cart_tom/assets/43721794/94d264e1-a60c-437d-a530-e635c7223da5)
-
-![image](https://github.com/CemTitor/shopping_cart_tom/assets/43721794/cd9a0eb0-94a0-4656-9c92-221f9a271ec6)
-
-<img src="https://github.com/CemTitor/shopping_cart_tom/assets/43721794/cd9a0eb0-94a0-4656-9c92-221f9a271ec6" width="300"/> <img src="https://github.com/CemTitor/shopping_cart_tom/assets/43721794/cd9a0eb0-94a0-4656-9c92-221f9a271ec6" width="300"/>
+<img src="https://github.com/CemTitor/shopping_cart_tom/assets/43721794/94d264e1-a60c-437d-a530-e635c7223da5" width="250"/> <img src="https://github.com/CemTitor/shopping_cart_tom/assets/43721794/cd9a0eb0-94a0-4656-9c92-221f9a271ec6" width="250"/>
 
 ## Tech Stack
 
