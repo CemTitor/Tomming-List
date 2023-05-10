@@ -4,6 +4,7 @@ import 'package:shopping_cart_tom/services/coupon_service.dart';
 
 class CouponsProvider with ChangeNotifier {
   final CouponService _couponService = CouponService();
+
   List<Coupon> _coupons = [];
 
   List<Coupon> get coupons {

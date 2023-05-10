@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shopping_cart_tom/providers/password_visible_provider.dart';
-import 'package:shopping_cart_tom/screens/login/utils/snackbar.dart';
-
-import '../../services/auth_service.dart';
-import '../main_screen.dart';
+import 'package:shopping_cart_tom/services/auth_service.dart';
+import 'package:shopping_cart_tom/screens/main_screen.dart';
 
 class LoginScreen extends StatefulWidget with ChangeNotifier {
   LoginScreen({Key? key}) : super(key: key);
@@ -226,16 +224,8 @@ class _LoginScreenState extends State<LoginScreen> {
         loginEmailController.clear();
         loginPasswordController.clear();
         if (AuthenticationService.successLogin == true) {
-          CustomSnackBar(
-            context,
-            Row(
-              children: const [
-                Text('Logging into account'),
-                CircularProgressIndicator(),
-              ],
-            ),
-          );
-          Navigator.pushReplacement(
+          const CircularProgressIndicator();
+        Navigator.pushReplacement(
             context,
             MaterialPageRoute(
               builder: (context) => const MainScreen(),

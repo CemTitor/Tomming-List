@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shopping_cart_tom/providers/products_provider.dart';
 import 'package:shopping_cart_tom/widgets/product_item.dart';
-import '../providers/theme_provider.dart';
+import 'package:shopping_cart_tom/providers/theme_provider.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -110,7 +110,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 itemBuilder: (ctx, i) => ProductItem(products[i]),
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
-                  childAspectRatio: 2 / 3.5,
+                  childAspectRatio: 2 / 4,
                   crossAxisSpacing: 20,
                   mainAxisSpacing: 20,
                 ),

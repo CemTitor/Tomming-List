@@ -1,11 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shopping_cart_tom/screens/login/utils/snackbar.dart';
-
-import '../../providers/password_visible_provider.dart';
-import '../../services/auth_service.dart';
-import '../main_screen.dart';
+import 'package:shopping_cart_tom/screens/login/main_login.dart';
+import 'package:shopping_cart_tom/providers/password_visible_provider.dart';
+import 'package:shopping_cart_tom/services/auth_service.dart';
 
 class RegisterScreen extends StatefulWidget with ChangeNotifier {
   @override
@@ -15,13 +13,11 @@ class RegisterScreen extends StatefulWidget with ChangeNotifier {
 class _RegisterScreenState extends State<RegisterScreen> {
   final FocusNode focusNodeFirstName = FocusNode();
   final FocusNode focusNodeLastName = FocusNode();
-  final FocusNode focusNodeUserName = FocusNode();
   final FocusNode focusNodeEmail = FocusNode();
   final FocusNode focusNodePassword = FocusNode();
 
   TextEditingController signupFirstNameController = TextEditingController();
   TextEditingController signupLastNameController = TextEditingController();
-  TextEditingController signupUserNameController = TextEditingController();
   TextEditingController signupPasswordController = TextEditingController();
   TextEditingController signupEmailController = TextEditingController();
 
@@ -29,7 +25,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
   void dispose() {
     focusNodeFirstName.dispose();
     focusNodeLastName.dispose();
-    focusNodeUserName.dispose();
     focusNodeEmail.dispose();
     focusNodePassword.dispose();
     super.dispose();
@@ -287,20 +282,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
   }
 
   void _toggleSignUpButton() {
-    CustomSnackBar(
-      context,
-      Row(
-        children: const [
-          Text('You are taken to the confirmation screen'),
-          CircularProgressIndicator(),
-        ],
-      ),
-    );
     if (signupPasswordController.text.length < 6) {
       warningText(context, "Password cannot be less than 6 characters!");
     } else if (signupEmailController.text.isEmpty ||
-        signupUserNameController.text.isEmpty ||
-        signupLastNameController.text.isEmpty ||
         signupFirstNameController.text.isEmpty) {
       warningText(context, "Fill all fields!");
     } else if (signupEmailController.text.isNotEmpty) {
@@ -308,7 +292,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
           .createAccount(
         signupFirstNameController.text,
         signupLastNameController.text,
-        // signupUserNameController.text,
         signupFirstNameController.text + signupLastNameController.text,
         signupEmailController.text,
         signupPasswordController.text,
@@ -320,20 +303,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
       }).whenComplete(() {
         signupFirstNameController.clear();
         signupLastNameController.clear();
-        // signupUserNameController.clear();
         signupPasswordController.clear();
         signupEmailController.clear();
-        if (AuthenticationService.successSignup == true) {
+        // if (AuthenticationService.successSignup == true) {
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
-              builder: (context) => const MainScreen(),
+              builder: (context) => const FirstScreen(),
             ),
           );
-        }
-        else {
-          warningText(context, "SignUp Unsuccessful. Check details again.");
-        }
+        // }
+        // else {
+        //   warningText(context, "SignUp Unsuccessful. Check details again.");
+        // }
       });
     }
   }
@@ -344,7 +326,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
       builder: (context) {
         return Container(
           decoration: BoxDecoration(
-            color: Colors.black,
             borderRadius: BorderRadius.circular(15.0),
           ),
           height: MediaQuery.of(context).size.height * 0.1,
@@ -352,11 +333,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
           child: Center(
             child: Text(
               warning,
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 16.0,
-                fontWeight: FontWeight.bold,
-              ),
+              style:
+              const TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
             ),
           ),
         );
