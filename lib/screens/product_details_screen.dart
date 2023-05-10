@@ -19,8 +19,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     final productId = ModalRoute.of(context)!.settings.arguments as String;
-    final product = Provider.of<ProductsProvider>(context, listen: false)
-        .findById(productId);
+    final product = Provider.of<ProductsProvider>(context, listen: false).findById(productId);
     final cartProvider = Provider.of<CartProvider>(context);
     final int _quantity = cartProvider.getItemQuantity(productId);
 
@@ -59,10 +58,14 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                 // child: Image(
                 //   image: AssetImage(product.imageUrl!),
                 // ),
-                child: Image.network(
-                  product.imageUrl!,
+               child: Image(
+                  image: AssetImage('assets/fruits/1.jpg'),
                   width: double.infinity,
                 ),
+                // child: Image.network(
+                //   product.imageUrl!,
+                //   width: double.infinity,
+                // ),
               )
                   : const SizedBox.shrink(),
               const SizedBox(height: 10),
@@ -81,8 +84,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
               const SizedBox(height: 20),
               if (_quantity == 0)
                 FilledButton(
-                  onPressed: () {
-                    cartProvider.addItem(product,'64592702c50ab5414ba4e262' );
+                  onPressed: () async{
+                    await cartProvider.addItem(product);
                     setState(() {});
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
@@ -92,7 +95,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                         action: SnackBarAction(
                           label: 'Undo',
                           onPressed: () {
-                            cartProvider.removeItem(product.id);
+                            cartProvider.removeProductItem(product.id);
                           },
                         ),
                       ),
@@ -145,10 +148,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                         ),
                         IconButton(
                           icon: Icon(Icons.add, color: Colors.black),
-                          onPressed: () {
-                            setState(() {
-                              cartProvider.addItem(product,'64592702c50ab5414ba4e262');
-                            });
+                          onPressed: () async {
+                            await cartProvider.addItem(product,);
+                            setState(()  {});
                           },
                         ),
                       ],

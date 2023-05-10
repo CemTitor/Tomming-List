@@ -50,14 +50,15 @@ class _ProductItemState extends State<ProductItem> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Image.network(
-                    widget.product.imageUrl!,
-                    width: double.infinity,
-                  ),
-                  // Image(
-                  //   image: AssetImage(widget.product.imageUrl!),
+                  // Image.network(
+                  //   widget.product.imageUrl!,
                   //   width: double.infinity,
                   // ),
+                  Image(
+                    image: AssetImage('assets/fruits/13.jpg'),
+                    width: double.infinity,
+
+                  ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
@@ -80,10 +81,9 @@ class _ProductItemState extends State<ProductItem> {
                 child: _quantity == 0
                     ? IconButton(
                   icon: Icon(Icons.add, color: Colors.black),
-                  onPressed: () {
-                    setState(() {
-                      cartProvider.addItem(widget.product, '64592702c50ab5414ba4e262');
-                    });
+                  onPressed: () async{
+                      await cartProvider.addItem(widget.product);
+                      setState(() {});
                   },
                 )
                     : Container(
@@ -93,11 +93,9 @@ class _ProductItemState extends State<ProductItem> {
                     children: [
                       IconButton(
                         icon: Icon(Icons.add, color: Colors.white),
-                        onPressed: () {
-                          setState(() {
-                            cartProvider.addItem(widget.product, '64592702c50ab5414ba4e262');
-
-                          });
+                        onPressed: () async{
+                            await cartProvider.addItem(widget.product);
+                            setState(()  {});
                         },
                       ),
                       Text(

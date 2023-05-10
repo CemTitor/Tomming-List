@@ -102,15 +102,18 @@ class _HomeScreenState extends State<HomeScreen> {
           } else if (snapshot.hasError) {
             return Center(child: Text('An error occurred while loading products.'));
           } else {
-            return GridView.builder(
-              padding: const EdgeInsets.all(10.0),
-              itemCount: products.length,
-              itemBuilder: (ctx, i) => ProductItem(products[i]),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: 2 / 3,
-                crossAxisSpacing: 10.0,
-                mainAxisSpacing: 10.0,
+            return Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: GridView.builder(
+                padding: const EdgeInsets.all(10.0),
+                itemCount: products.length,
+                itemBuilder: (ctx, i) => ProductItem(products[i]),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  childAspectRatio: 2 / 3.5,
+                  crossAxisSpacing: 20,
+                  mainAxisSpacing: 20,
+                ),
               ),
             );
           }
