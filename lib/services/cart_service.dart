@@ -65,6 +65,23 @@ class CartService {
     }
   }
 
+  Future<void> removeItem(String productId) async {
+    final response = await http.delete(
+      Uri.parse(
+          '$baseUrl/remove-item-from-shopping-cart-compeletely?productId=$productId'),
+      headers: {
+        'accept': '*/*',
+        'Authorization': bearerToken,
+      },
+    );
+
+    if (response.statusCode == 200) {
+      print('Item completely removed from shopping cart backend');
+    } else {
+      throw Exception('Failed to completely remove item from shopping cart');
+    }
+  }
+
   Future<void> clearShoppingCart() async {
     final response = await http.delete(
       Uri.parse(
@@ -81,5 +98,4 @@ class CartService {
       throw Exception('Failed to remove all items from shopping cart');
     }
   }
-
 }
