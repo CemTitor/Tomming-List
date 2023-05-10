@@ -35,31 +35,31 @@ class MainScreenState extends State<MainScreen> {
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
-      floatingActionButton: Consumer<CartProvider>(
-        builder: (context, cart, child) {
-          return cart.itemCount > 0
-              ? FloatingActionButton(
-            onPressed: () {
-              setState(() {
-                _selectedIndex = 2;
-              });
-            },
-            child: Row(
-              children: [
-                SizedBox(width: 10),
-                Icon(Icons.shopping_cart),
-                SizedBox(width: 5),
-                Expanded(
-                  child: Text(
-                    cart.itemCount.toString(),
-                  ),
-                ),
-              ],
-            ),
-          )
-              : const SizedBox.shrink();
-        },
-      ),
+      floatingActionButton: _selectedIndex != 2
+          ? Consumer<CartProvider>(
+              builder: (context, cart, child) {
+                return cart.itemCount > 0
+                    ? FloatingActionButton(
+                        onPressed: () {
+                          setState(() {
+                            _selectedIndex = 2;
+                          });
+                        },
+                        child: Row(
+                          children: [
+                            SizedBox(width: 10),
+                            Icon(Icons.shopping_cart),
+                            SizedBox(width: 5),
+                            Text(
+                              cart.itemCount.toString(),style: TextStyle(fontSize: 12),
+                            ),
+                          ],
+                        ),
+                      )
+                    : const SizedBox.shrink();
+              },
+            )
+          : null,
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
