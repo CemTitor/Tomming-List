@@ -4,17 +4,6 @@ import 'package:shopping_cart_tom/constants/global_constants.dart';
 import 'package:shopping_cart_tom/models/cart_item.dart';
 
 class CartService {
-
-  // final AuthService _authService = AuthService();
-  // String get userId => _authService.getUserid!;
-  // String get bearerToken => 'Bearer ${_authService.getAccessToken}';
-
-  final String baseUrl =
-      'https://4c87-31-206-104-209.ngrok-free.app/api/ShoppingCart';
-  final String userId = '6459066cac3227b6ca96a7ec';
-  final String bearerToken =
-      'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiI2NDU5MDY2Y2FjMzIyN2I2Y2E5NmE3ZWMiLCJlbWFpbCI6ImNteWxtekBnbWFpbC5jb20iLCJuYmYiOjE2ODM2Nzc3MzQsImV4cCI6MTY4MzY4MTMzNCwiaWF0IjoxNjgzNjc3NzM0LCJpc3MiOiJ3d3cudG9taWlzc3Vlci5jb20iLCJhdWQiOiJ3d3cudG9taS5jb20ifQ.lQ4JYLO3X7yDdtO0nl9mb39DPiazscUkhFUI8l_KoEg';
-
   Future<void> addItemToShoppingCart(String productId) async {
     final response = await http.post(
       Uri.parse(

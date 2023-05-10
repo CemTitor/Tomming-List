@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shopping_cart_tom/constants/global_constants.dart';
 
 class AuthenticationService with ChangeNotifier {
   String? userUid;
@@ -12,12 +14,20 @@ class AuthenticationService with ChangeNotifier {
   static bool successSignup = false;
   static bool verifiedMail = false;
 
-  final String baseUrl = 'https://4c87-31-206-104-209.ngrok-free.app';
+  // Singleton implementation
+  static AuthenticationService? _instance;
+  AuthenticationService._privateConstructor();
+
+  // Singleton getter
+  static AuthenticationService get instance {
+    _instance ??= AuthenticationService._privateConstructor();
+    return _instance!;
+  }
 
   Future logIntoAccount(String email, String password) async {
     try {
       final response = await http.post(
-        Uri.parse('$baseUrl/api/Auth/login'),
+        Uri.parse('$baseUrl/login'),
         headers: {
           'accept': '*/*',
           'Content-Type': 'application/json',
@@ -34,8 +44,8 @@ class AuthenticationService with ChangeNotifier {
         final responseBody = jsonDecode(response.body);
         accessToken = responseBody['data']['token'];
         userUid = responseBody['data']['userId'];
-        print(' acces token: $accessToken');
-        print( 'user id: $userUid');
+        print('access Token: $accessToken');
+        print('userId: $userUid');
         successLogin = true;
         notifyListeners();
       } else {
@@ -52,10 +62,9 @@ class AuthenticationService with ChangeNotifier {
       String email, String password) async {
     try {
       final response = await http.post(
-        Uri.parse('$baseUrl/api/Auth/register'),
+        Uri.parse('$baseUrl/register'),
         headers: {
           'accept': '*/*',
-          'Authorization': 'Bearer $accessToken',
           'Content-Type': 'application/json',
         },
         body: jsonEncode({
@@ -66,8 +75,8 @@ class AuthenticationService with ChangeNotifier {
           'password': password,
         }),
       );
-
       if (response.statusCode == 200) {
+        print('Signed up successfully.');
         final responseBody = jsonDecode(response.body);
         userUid = responseBody['data']['userId'];
         print(userUid);
