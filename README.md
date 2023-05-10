@@ -6,21 +6,9 @@ An e-commerce mobile application that offers a smooth shopping experience, allow
 
 <img src="https://github.com/CemTitor/shopping_cart_tom/assets/43721794/7d06bb21-b8fd-480b-bb25-f4b4a7c8cc37" width="300"/> 
 
-https://github.com/CemTitor/shopping_cart_tom/assets/43721794/7d06bb21-b8fd-480b-bb25-f4b4a7c8cc37
-
 ## UI Screenshots
 
-<img src="https://github.com/CemTitor/shopping_cart_tom/assets/43721794/cd9a0eb0-94a0-4656-9c92-221f9a271ec6" width="250"/>
-
-![image](https://github.com/CemTitor/shopping_cart_tom/assets/43721794/a2678300-337d-4a68-8088-d9b758051d83)
-
-![image](https://github.com/CemTitor/shopping_cart_tom/assets/43721794/2f740c5b-ff0c-48e2-8c52-62e150205243)
-
-![image](https://github.com/CemTitor/shopping_cart_tom/assets/43721794/29e08b18-0382-4413-8eb4-7272a2d6f7d1)
-
-![image](https://github.com/CemTitor/shopping_cart_tom/assets/43721794/4fbcb78f-d884-4c96-b0eb-c49b4d748c92)
-
-<img src="https://github.com/CemTitor/shopping_cart_tom/assets/43721794/94d264e1-a60c-437d-a530-e635c7223da5" width="250"/> <img src="https://github.com/CemTitor/shopping_cart_tom/assets/43721794/cd9a0eb0-94a0-4656-9c92-221f9a271ec6" width="250"/> <img src="https://github.com/CemTitor/shopping_cart_tom/assets/43721794/a2678300-337d-4a68-8088-d9b758051d83" width="250"/> <img src="https://github.com/CemTitor/shopping_cart_tom/assets/43721794/2f740c5b-ff0c-48e2-8c52-62e150205243" width="250"/> <img src="https://github.com/CemTitor/shopping_cart_tom/assets/43721794/29e08b18-0382-4413-8eb4-7272a2d6f7d1" width="250"/> <img src="https://github.com/CemTitor/shopping_cart_tom/assets/43721794/4fbcb78f-d884-4c96-b0eb-c49b4d748c92" width="250"/>
+<img src="https://github.com/CemTitor/shopping_cart_tom/assets/43721794/c165a6de-2603-4377-9ce5-a8b90336b3a5" width="250"/>    <img src="https://github.com/CemTitor/shopping_cart_tom/assets/43721794/5e09fce5-a268-4a01-915c-0d0d7f801f10" width="250"/> <img src="https://github.com/CemTitor/shopping_cart_tom/assets/43721794/cc8caff3-fdc4-45f7-b43b-505824afa5ac" width="250"/> <img src="https://github.com/CemTitor/shopping_cart_tom/assets/43721794/a2678300-337d-4a68-8088-d9b758051d83" width="250"/> <img src="https://github.com/CemTitor/shopping_cart_tom/assets/43721794/2f740c5b-ff0c-48e2-8c52-62e150205243" width="250"/> <img src="https://github.com/CemTitor/shopping_cart_tom/assets/43721794/29e08b18-0382-4413-8eb4-7272a2d6f7d1" width="250"/> <img src="https://github.com/CemTitor/shopping_cart_tom/assets/43721794/4fbcb78f-d884-4c96-b0eb-c49b4d748c92" width="250"/>
 
 ## Tech Stack
 
