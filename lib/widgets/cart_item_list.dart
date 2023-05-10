@@ -27,7 +27,7 @@ class CartItemList extends StatelessWidget {
               child: const Icon(Icons.delete, size: 24),
             ),
             onDismissed: (direction) {
-              cartProvider.removeProductItem(cartItemId);
+              cartProvider.removeItem(cartItemId);
             },
             child: ListTile(
               leading: Container(
@@ -65,7 +65,7 @@ class CartItemList extends StatelessWidget {
                   IconButton(
                     icon: Icon(Icons.add,),
                     onPressed: () {
-                      // cartProvider.addItem(cartItem?.product, 1);
+                      // cartProvider.addItem(cartItem!);
                     },
                   ),
                 ],
