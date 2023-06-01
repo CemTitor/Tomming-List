@@ -4,9 +4,7 @@ An e-commerce mobile application that offers a smooth shopping experience, allow
 
 ## UI Recording
 
-<img src="https://github.com/CemTitor/shopping_cart_tom/assets/43721794/c92d9639-736c-4e46-93df-99a277a9a31d" width="300"/> 
-
-https://github.com/CemTitor/shopping_cart_tom/assets/43721794/c92d9639-736c-4e46-93df-99a277a9a31d
+https://github.com/CemTitor/Tomming-List/assets/43721794/6817fc88-17c5-47bc-8764-5cfd55467917
 
 ## UI Screenshots
 # Login
